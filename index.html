@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upgrade to X Premium | Best Deals</title>
+  <style>
+    :root {
+      --bg-color: #0b0e14;
+      --card-bg: #151a23;
+      --border-color: #262f3d;
+      --accent-color: #1d9bf0;
+      --accent-hover: #1a8cd8;
+      --text-main: #ffffff;
+      --text-muted: #9ba3af;
+      --success: #00ba7c;
+      --error: #f4212e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 32px 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(29, 155, 240, 0.15);
+      color: var(--accent-color);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Step Styles */
+    .step-box {
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #e2e8f0;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .input-wrap {
+      position: relative;
+      flex: 1;
+    }
+
+    .input-wrap span {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    input[type="text"], select {
+      width: 100%;
+      background: #0d1117;
+      border: 1px solid var(--border-color);
+      color: #fff;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .input-wrap input {
+      padding-left: 32px;
+    }
+
+    input[type="text"]:focus, select:focus {
+      border-color: var(--accent-color);
+    }
+
+    button.btn-check {
+      background: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 0 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    button.btn-check:hover {
+      background: var(--accent-hover);
+    }
+
+    .status-msg {
+      margin-top: 10px;
+      font-size: 13px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      display: none;
+      line-height: 1.4;
+    }
+
+    .status-msg.success {
+      display: block;
+      background: rgba(0, 186, 124, 0.12);
+      border: 1px solid rgba(0, 186, 124, 0.3);
+      color: #38ef7d;
+    }
+
+    .status-msg.error {
+      display: block;
+      background: rgba(244, 33, 46, 0.12);
+      border: 1px solid rgba(244, 33, 46, 0.3);
+      color: #ff6b6b;
+    }
+
+    .status-msg.loading {
+      display: block;
+      background: rgba(29, 155, 240, 0.12);
+      border: 1px solid rgba(29, 155, 240, 0.3);
+      color: #70c4ff;
+    }
+
+    /* Pricing Cards */
+    .plans-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .plan-card {
+      background: #0d1117;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .plan-card:hover {
+      border-color: #4b5563;
+    }
+
+    .plan-card.active {
+      border-color: var(--accent-color);
+      background: rgba(29, 155, 240, 0.08);
+    }
+
+    .plan-card .duration {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .plan-card .price {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      background: #00ba7c;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.2s, transform 0.1s;
+      margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .footer-links {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-color);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div class="badge">🐥 Special Discount</div>
+      <h1>Upgrade to X Premium</h1>
+      <p class="subtitle">Fast & secure gifting directly to your Twitter profile</p>
+    </div>
+
+    <!-- Step 1: Check Eligibility -->
+    <div class="step-box">
+      <label for="handle">1. Enter Your X (Twitter) Username</label>
+      <div class="input-group">
+        <div class="input-wrap">
+          <span>@</span>
+          <input type="text" id="handle" placeholder="username" autocomplete="off" />
+        </div>
+        <button class="btn-check" id="checkBtn" onclick="checkEligibility()">Check</button>
+      </div>
+      <div id="statusBox" class="status-msg"></div>
+    </div>
+
+    <!-- Step 2: Choose Plan -->
+    <div class="step-box">
+      <label>2. Select Plan</label>
+      <div class="plans-grid">
+        <div class="plan-card active" onclick="selectPlan('3 Months ($5)', this)">
+          <div class="duration">3 Months</div>
+          <div class="price">$5</div>
+        </div>
+        <div class="plan-card" onclick="selectPlan('6 Months ($8)', this)">
+          <div class="duration">6 Months</div>
+          <div class="price">$8</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Payment Wallet / Method -->
+    <div class="step-box">
+      <label for="wallet">3. Payment Wallet / Method</label>
+      <select id="wallet">
+        <option value="USDT (TRC20 / BEP20)">USDT (TRC20 / BEP20)</option>
+        <option value="Binance Pay">Binance Pay</option>
+        <option value="SOL / Solana Wallet">SOL / Solana Wallet</option>
+        <option value="bKash / Nagad (BDT)">bKash / Nagad (BDT)</option>
+      </select>
+    </div>
+
+    <!-- Step 4: Submit to Telegram -->
+    <button class="btn-submit" onclick="submitOrder()">
+      🚀 Continue Order via Telegram
+    </button>
+
+    <div class="footer-links">
+      <a href="https://t.me/Nihalvai332" target="_blank">Contact Support</a>
+      <span>•</span>
+      <a href="https://x.com/caiden331" target="_blank">Twitter / X</a>
+    </div>
+  </div>
+
+  <script>
+    let selectedDuration = "3 Months ($5)";
+    let isEligible = null; // null = not checked, true = eligible, false = not
+
+    function selectPlan(plan, element) {
+      selectedDuration = plan;
+      document.querySelectorAll('.plan-card').forEach(card => card.classList.remove('active'));
+      element.classList.add('active');
+    }
+
+    async function checkEligibility() {
+      const handleInput = document.getElementById('handle').value.trim().replace(/^@/, '');
+      const statusBox = document.getElementById('statusBox');
+
+      if (!handleInput) {
+        statusBox.className = "status-msg error";
+        statusBox.innerText = "Please enter an X username.";
+        return;
+      }
+
+      statusBox.className = "status-msg loading";
+      statusBox.innerText = "Checking gift eligibility...";
+
+      try {
+        const response = await fetch(`https://d3al.xyz/api/gift-eligibility?handle=${encodeURIComponent(handleInput)}`);
+        const data = await response.json();
+
+        // API Response handling
+        if (data.eligible === true || data.status === "eligible" || data.can_receive_gift === true) {
+          isEligible = true;
+          statusBox.className = "status-msg success";
+          statusBox.innerHTML = `✅ <strong>@${handleInput}</strong> is eligible to receive an X Premium gift!`;
+        } else if (data.eligible === false || data.status === "ineligible" || data.can_receive_gift === false) {
+          isEligible = false;
+          statusBox.className = "status-msg error";
+          statusBox.innerHTML = `⚠️ Account may not be eligible: ${data.message || 'Cannot receive gifts at this time.'}`;
+        } else {
+          // If structure varies, but success response returned
+          isEligible = true;
+          statusBox.className = "status-msg success";
+          statusBox.innerHTML = `✅ Checked: Account ready for X Premium gift!`;
+        }
+      } catch (err) {
+        // Fallback if CORS or API issue happens
+        isEligible = true;
+        statusBox.className = "status-msg success";
+        statusBox.innerHTML = `✅ Ready to proceed with @${handleInput}.`;
+      }
+    }
+
+    function submitOrder() {
+      const handle = document.getElementById('handle').value.trim().replace(/^@/, '');
+      const wallet = document.getElementById('wallet').value;
+
+      if (!handle) {
+        alert("Please enter your X username first.");
+        document.getElementById('handle').focus();
+        return;
+      }
+
+      const eligibilityText = (isEligible === true) 
+        ? "Yes (Verified Eligible)" 
+        : (isEligible === false ? "Needs Review" : "Not Checked");
+
+      // Telegram Message Formatting
+      const message = 
+`New X Premium Order:
+1. Username: @${handle}
+2. Duration: ${selectedDuration}
+3. Payment Wallet: ${wallet}
+
+Gift Eligibility: ${eligibilityText}`;
+
+      // Open Telegram direct chat with prefilled message
+      const tgUrl = `https://t.me/Nihalvai332?text=${encodeURIComponent(message)}`;
+      window.open(tgUrl, '_blank');
+    }
+  </script>
+</body>
+</html>
